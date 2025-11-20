@@ -65,6 +65,41 @@ const SCHEMES_DATA = [
   { scheme_name: "ASPIRE (Rural Innovation)", loan_type: "SUBSIDY_INCUBATION", target_demographics: ["ALL"], target_sectors: ["RURAL_INDUSTRY", "INNOVATION_STARTUPS"], target_purpose: ["INCUBATION", "LIVELIHOOD_MISSION"], is_for_new_unit: true, key_benefit_keywords: ["RURAL_FOCUS", "FUNDING_FOR_INCUBATORS"], is_grant_scheme: true }
 ];
 
+const GENERAL_SECTORS = ['ALL', 'MANUFACTURING', 'SERVICE'];
+
+const SPECIALIZED_SECTOR_META = {
+  DEFENCE_SECTOR: { label: 'Defence & Aerospace', icon: ShieldCheck },
+  GREEN_VALUE_CHAIN: { label: 'Green / Climate', icon: Leaf },
+  AGRO_PROCESSING: { label: 'Agro & Food Value Chain', icon: Tractor },
+  TOURISM_HOSPITALITY: { label: 'Tourism & Hospitality', icon: Coffee },
+  TRANSPORT: { label: 'Transport & EV Mobility', icon: Plane },
+  RURAL_INDUSTRY: { label: 'Rural Industry', icon: Sprout },
+  INNOVATION_STARTUPS: { label: 'Innovation & Startups', icon: Sparkles },
+};
+
+const formatSectorLabel = (value) =>
+  value
+    .toLowerCase()
+    .split('_')
+    .map((chunk) => chunk.charAt(0).toUpperCase() + chunk.slice(1))
+    .join(' ');
+
+const SPECIALIZED_SECTORS = Array.from(
+  new Set(
+    SCHEMES_DATA.flatMap((scheme) => scheme.target_sectors || [])
+      .filter((sector) => !GENERAL_SECTORS.includes(sector))
+  )
+).map((sector) => {
+  const meta = SPECIALIZED_SECTOR_META[sector] ?? {};
+  return {
+    id: sector,
+    label: meta.label ?? formatSectorLabel(sector),
+    icon: meta.icon ?? Building2,
+  };
+}).sort((a, b) => a.label.localeCompare(b.label));
+
+const SPECIAL_SECTOR_IDS = SPECIALIZED_SECTORS.map((sector) => sector.id);
+
 const HERO_METRICS = [
   { label: "Schemes Mapped", value: "45+", detail: "Loans, grants & subsidies" },
   { label: "Approval Speed", value: "3x", detail: "faster with right-fit", accent: true },
@@ -577,28 +612,26 @@ const RequirementForm = ({ onSubmit }) => {
         {/* Specialized Categories (Sub-sectors) */}
         <div className="space-y-3">
           <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-2">
-            Specialized Categories <span className="text-slate-400 font-normal normal-case">(Select all that apply)</span>
+            Specialized Categories <span className="text-slate-400 font-normal normal-case">(auto-suggested from schemes)</span>
           </label>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {[
-              { id: 'DEFENCE_SECTOR', label: 'Defense', icon: <ShieldCheck size={16}/> },
-              { id: 'GREEN_VALUE_CHAIN', label: 'Green / Eco', icon: <Leaf size={16}/> },
-              { id: 'AGRO_PROCESSING', label: 'Agro Process', icon: <Tractor size={16}/> },
-              { id: 'TOURISM_HOSPITALITY', label: 'Tourism', icon: <Coffee size={16}/> },
-            ].map((item) => (
-               <button
-                key={item.id}
-                type="button"
-                onClick={() => handleMultiSelect('sub_sector_keywords', item.id)}
-                className={`flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-medium border transition-all ${
-                  formData.sub_sector_keywords.includes(item.id)
-                    ? 'bg-emerald-50 border-emerald-500 text-emerald-700'
-                    : 'bg-white border-slate-200 text-slate-600 hover:border-emerald-300'
-                }`}
-              >
-                {item.icon} {item.label}
-              </button>
-            ))}
+            {SPECIALIZED_SECTORS.map((item) => {
+              const Icon = item.icon;
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => handleMultiSelect('sub_sector_keywords', item.id)}
+                  className={`flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-medium border transition-all ${
+                    formData.sub_sector_keywords.includes(item.id)
+                      ? 'bg-emerald-50 border-emerald-500 text-emerald-700'
+                      : 'bg-white border-slate-200 text-slate-600 hover:border-emerald-300'
+                  }`}
+                >
+                  <Icon size={16} /> {item.label}
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -693,7 +726,76 @@ const RequirementForm = ({ onSubmit }) => {
   );
 };
 
+const hasAnyKeyword = (scheme, keywords) =>
+  (scheme.key_benefit_keywords || []).some((keyword) => keywords.includes(keyword));
+
+const hasAnyPurpose = (scheme, purposes) =>
+  (scheme.target_purpose || []).some((purpose) => purposes.includes(purpose));
+
+const deriveApplicationReadiness = (scheme) => {
+  const readiness = [];
+  const amount = scheme.max_amount_cr || scheme.min_amount_cr || 0;
+
+  if (scheme.is_for_new_unit) {
+    readiness.push('Project report with cash-flow forecasts and promoter contribution proof for the new/greenfield unit.');
+  } else {
+    readiness.push('Last 2 years of audited financials showing profitability (or a clear turnaround plan) plus recent GST filings.');
+  }
+
+  if (amount >= 5) {
+    readiness.push('Detailed banker information sheet covering existing limits, DSCR (>1.20), and repayment track record for high-ticket proposals.');
+  } else {
+    readiness.push('12-month bank statements to evidence turnover and seasonality for the requested limit.');
+  }
+
+  if (hasAnyPurpose(scheme, ['EXPORT_POTENTIAL'])) {
+    readiness.push('IEC copy and export order pipeline to justify the export-led focus of this scheme.');
+  }
+
+  if (hasAnyKeyword(scheme, ['TReDS_FOCUS', 'RXIL_TReDS_FOCUS'])) {
+    readiness.push('TReDS onboarding/settlement confirmation so the lender can verify invoice discounting history.');
+  }
+
+  readiness.push('Standard promoter KYC: Udyam registration, PAN, GST, and address proofs for all directors/partners.');
+
+  return Array.from(new Set(readiness));
+};
+
+const deriveComplianceChecklist = (scheme) => {
+  const checklist = [];
+
+  if (hasAnyKeyword(scheme, ['SECURED_AGAINST_ASSETS'])) {
+    checklist.push('Collateral: mortgage factory land/building or offer hypothecation on plant & machinery as per bank valuation.');
+  } else if (hasAnyKeyword(scheme, ['COLLATERAL_FREE_LOAN', 'MINIMAL_COLLATERAL'])) {
+    checklist.push('Eligible for collateral-light variants (CGTMSE / guarantee cover) — budget guarantee fee in project cost.');
+  }
+
+  if (scheme.is_for_new_unit) {
+    checklist.push('Title documents, lease deeds, and statutory approvals for the upcoming site must be submitted.');
+  } else if (scheme.is_for_new_unit === false) {
+    checklist.push('Maintain clean repayment history (no SMA accounts in 12 months) and submit latest stock/receivable statements.');
+  }
+
+  if (hasAnyPurpose(scheme, ['PROJECT_SETUP', 'CAPEX_MACHINERY_ACQUISITION', 'CAPEX_FACTORY_CONSTRUCTION', 'CAPEX_SOLAR'])) {
+    checklist.push('Detailed CAPEX breakup with vendor quotations, pro-forma invoices, and implementation timelines.');
+  }
+
+  if (hasAnyPurpose(scheme, ['WORKING_CAPITAL_GENERAL'])) {
+    checklist.push('Monthly stock statements and debtor ageing to size the working-capital requirement.');
+  }
+
+  if (scheme.is_grant_scheme) {
+    checklist.push('Expect milestone-based disbursements — prepare to file utilization certificates and audited statements post release.');
+  }
+
+  checklist.push('Banking formalities: board resolution/partners’ authorization, latest ITRs, and no-dues/SIBC checks as per lender format.');
+
+  return Array.from(new Set(checklist));
+};
+
 const SchemeDetails = ({ scheme, onBack }) => {
+  const applicationReadiness = deriveApplicationReadiness(scheme);
+  const complianceChecklist = deriveComplianceChecklist(scheme);
   return (
     <div className="max-w-4xl mx-auto pb-20">
       <button 
@@ -790,6 +892,31 @@ const SchemeDetails = ({ scheme, onBack }) => {
                    ))}
                 </ul>
              </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 mt-10">
+            <div>
+              <h3 className="text-lg font-bold text-slate-800 mb-4">Application Readiness</h3>
+              <ul className="space-y-3">
+                {applicationReadiness.map((item, idx) => (
+                  <li key={`ready-${idx}`} className="flex items-start gap-3 text-slate-600">
+                    <CheckCircle size={16} className="text-emerald-600 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-slate-800 mb-4">Banking & Compliance Checklist</h3>
+              <ul className="space-y-3">
+                {complianceChecklist.map((item, idx) => (
+                  <li key={`comp-${idx}`} className="flex items-start gap-3 text-slate-600">
+                    <Landmark size={16} className="text-slate-500 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           
           <div className="mt-10 pt-8 border-t border-slate-100 flex justify-end">
@@ -947,7 +1074,7 @@ const App = () => {
       const schemeSectors = scheme.target_sectors;
       
       // Check for specialized sectors (Defense, Green, Agro)
-      const specialSectors = ['DEFENCE_SECTOR', 'GREEN_VALUE_CHAIN', 'AGRO_PROCESSING', 'TOURISM_HOSPITALITY'];
+    const specialSectors = SPECIAL_SECTOR_IDS;
       
       // Does the scheme target ONLY a special sector?
       const isSpecializedScheme = specialSectors.some(s => schemeSectors.includes(s) && !schemeSectors.includes("ALL"));
