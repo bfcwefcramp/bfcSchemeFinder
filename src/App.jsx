@@ -33,37 +33,74 @@ import {
 // --- DATA: SCHEME MASTER COLLECTION (From your file) ---
 const SCHEMES_DATA = [
   // SIDBI LOANS
-  { scheme_name: "EXPRESS Loan", min_amount_cr: 0.01, max_amount_cr: 1.0, target_demographics: ["ALL"], target_sectors: ["MANUFACTURING", "SERVICE", "ALL"], target_purpose: ["CAPEX_MACHINERY_ACQUISITION"], is_for_new_unit: false, key_benefit_keywords: ["FAST_APPROVAL", "100%_FINANCING_W_FD"], loan_type: "MACHINERY", max_tenure_yrs: 5 },
-  { scheme_name: "SPEED Loan", min_amount_cr: 0.01, max_amount_cr: 15.0, target_demographics: ["ALL"], target_sectors: ["MANUFACTURING", "SERVICE", "ALL"], target_purpose: ["CAPEX_MACHINERY_ACQUISITION"], is_for_new_unit: false, key_benefit_keywords: ["HIGH_LIMIT", "MINIMAL_COLLATERAL", "LONG_TENURE"], loan_type: "MACHINERY", max_tenure_yrs: 7 },
-  { scheme_name: "ATOM", min_amount_cr: 0.01, max_amount_cr: 1.0, target_demographics: ["ALL"], target_sectors: ["MANUFACTURING", "SERVICE", "ALL"], target_purpose: ["CAPEX_MACHINERY_ACQUISITION"], is_for_new_unit: false, key_benefit_keywords: ["TReDS_FOCUS", "IMMEDIATE_OFFER", "100%_FINANCING"], loan_type: "MACHINERY", max_tenure_yrs: 5 },
-  { scheme_name: "ARISE", min_amount_cr: 0.01, max_amount_cr: 50.0, target_demographics: ["ALL"], target_sectors: ["MANUFACTURING", "SERVICE", "ALL"], target_purpose: ["CAPEX_MACHINERY_ACQUISITION", "CAPEX_FACTORY_CONSTRUCTION", "PROJECT_EXPANSION", "CAPEX_SOLAR"], is_for_new_unit: false, key_benefit_keywords: ["HIGH_LIMIT", "SUSTAINABLE", "COVERS_LAND"], loan_type: "PROJECT_LOAN", max_tenure_yrs: 7 },
-  { scheme_name: "STHAPAN", min_amount_cr: 0.01, max_amount_cr: 50.0, target_demographics: ["ALL"], target_sectors: ["MANUFACTURING", "SERVICE", "ALL"], target_purpose: ["CAPEX_MACHINERY_ACQUISITION", "CAPEX_FACTORY_CONSTRUCTION", "PROJECT_SETUP", "CAPEX_SOLAR"], is_for_new_unit: true, key_benefit_keywords: ["HIGH_LIMIT", "GREENFIELD_FOCUS", "COVERS_LAND"], loan_type: "PROJECT_LOAN", max_tenure_yrs: 7 },
-  { scheme_name: "UBHARTE SITAARE", min_amount_cr: 0.01, max_amount_cr: 30.0, target_demographics: ["ALL"], target_sectors: ["ALL"], target_purpose: ["PROJECT_MODERNIZATION", "EXPORT_POTENTIAL"], is_for_new_unit: false, key_benefit_keywords: ["PERFORMANCE_INCENTIVES", "GLOBAL_GROWTH", "TECHNOLOGY_UPGRADE"], loan_type: "PROJECT_LOAN", max_tenure_yrs: 7 },
-  { scheme_name: "ARJANA", min_amount_cr: 0.01, max_amount_cr: 3.0, target_demographics: ["WOMAN_PROMOTER"], target_sectors: ["MANUFACTURING", "SERVICE", "ALL"], target_purpose: ["CAPEX_MACHINERY_ACQUISITION", "PROJECT_EXPANSION"], is_for_new_unit: null, key_benefit_keywords: ["100%_MACHINERY_FINANCING", "SOFT_TERMS", "CGTME_FEE_INCENTIVE"], loan_type: "PROJECT_LOAN", max_tenure_yrs: 7 },
-  { scheme_name: "SAATH", min_amount_cr: 0.01, max_amount_cr: 3.0, target_demographics: ["SC_ST_PROMOTER"], target_sectors: ["MANUFACTURING", "SERVICE", "ALL"], target_purpose: ["CAPEX_MACHINERY_ACQUISITION", "PROJECT_EXPANSION"], is_for_new_unit: null, key_benefit_keywords: ["100%_MACHINERY_FINANCING", "SOFT_TERMS", "CGTME_FEE_INCENTIVE"], loan_type: "PROJECT_LOAN", max_tenure_yrs: 7 },
-  { scheme_name: "MORE", min_amount_cr: 0.01, max_amount_cr: 5.0, target_demographics: ["ALL"], target_sectors: ["SERVICE", "TOURISM_HOSPITALITY"], target_purpose: ["PROJECT_MODERNIZATION", "INTERIOR_RENOVATION"], is_for_new_unit: false, key_benefit_keywords: ["SWIFT_SANCTIONS", "FLEXIBLE_REPAYMENT"], loan_type: "THEMATIC", max_tenure_yrs: 8 },
-  { scheme_name: "CASH DEFENCE", min_amount_cr: 0.01, max_amount_cr: 20.0, target_demographics: ["ALL"], target_sectors: ["DEFENCE_SECTOR"], target_purpose: ["PURCHASE_ORDER_FINANCING"], is_for_new_unit: null, key_benefit_keywords: ["100%_PO_FINANCING", "STANDBY_CREDIT", "CUSTOMIZED_REPAYMENT"], loan_type: "THEMATIC", max_tenure_yrs: 5 },
-  { scheme_name: "CASH RXIL", min_amount_cr: 0.01, max_amount_cr: 25.0, target_demographics: ["ALL"], target_sectors: ["ALL"], target_purpose: ["PURCHASE_ORDER_FINANCING"], is_for_new_unit: false, key_benefit_keywords: ["RXIL_TReDS_FOCUS", "HIGH_LIMIT", "FAST_DISBURSAL"], loan_type: "THEMATIC", max_tenure_yrs: 0.5 },
-  { scheme_name: "EDGE", min_amount_cr: 0.01, max_amount_cr: 3.0, target_demographics: ["ALL"], target_sectors: ["ALL"], target_purpose: ["CAPEX_DG_SET"], is_for_new_unit: false, key_benefit_keywords: ["CLEANER_ENERGY", "LOWER_PROMOTER_CONTRIBUTION"], loan_type: "THEMATIC", max_tenure_yrs: 5 },
-  { scheme_name: "AGRI-AI", min_amount_cr: 0.01, max_amount_cr: 50.0, target_demographics: ["ALL"], target_sectors: ["AGRO_PROCESSING"], target_purpose: ["PROJECT_EXPANSION", "WORKING_CAPITAL_GENERAL", "COLD_STORAGE", "LOGISTICS"], is_for_new_unit: null, key_benefit_keywords: ["COMPOSITE_OPTION", "FPO_ELIGIBILITY", "80%_PROJECT_FINANCE"], loan_type: "THEMATIC", max_tenure_yrs: 7 },
-  { scheme_name: "Green Finance Scheme (GFS)", min_amount_cr: 0.01, max_amount_cr: 50.0, target_demographics: ["ALL"], target_sectors: ["GREEN_VALUE_CHAIN"], target_purpose: ["PROJECT_SETUP", "PROJECT_EXPANSION", "GREEN_VALUE_CHAIN"], is_for_new_unit: null, key_benefit_keywords: ["SUSTAINABLE_FOCUS", "HIGH_LIMIT"], loan_type: "GREEN", max_tenure_yrs: 10 },
-  { scheme_name: "4E Scheme", min_amount_cr: 0.01, max_amount_cr: 10.0, target_demographics: ["ALL"], target_sectors: ["GREEN_VALUE_CHAIN", "ALL"], target_purpose: ["ENERGY_EFFICIENCY", "CAPEX_MACHINERY_ACQUISITION"], is_for_new_unit: false, key_benefit_keywords: ["100%_FINANCING", "ENERGY_EFFICIENCY"], loan_type: "GREEN", max_tenure_yrs: 5 },
-  { scheme_name: "Electric Vehicle Scheme", min_amount_cr: 0.01, max_amount_cr: 20.0, target_demographics: ["ALL"], target_sectors: ["GREEN_VALUE_CHAIN", "SERVICE", "TRANSPORT"], target_purpose: ["CAPEX_EV_INFRA", "VEHICLE_FINANCING"], is_for_new_unit: null, key_benefit_keywords: ["ECO_FRIENDLY", "INFRASTRUCTURE_FUNDING"], loan_type: "GREEN", max_tenure_yrs: 5 },
-  { scheme_name: "SWIFT", min_amount_cr: 0.01, max_amount_cr: 3.0, target_demographics: ["ALL"], target_sectors: ["ALL"], target_purpose: ["WORKING_CAPITAL_GENERAL"], is_for_new_unit: false, key_benefit_keywords: ["OVERDRAFT", "QUICK_DISBURSAL"], loan_type: "WORKING_CAPITAL", max_tenure_yrs: 3 },
-  { scheme_name: "STEP", min_amount_cr: 0.01, max_amount_cr: 3.0, target_demographics: ["ALL"], target_sectors: ["ALL"], target_purpose: ["WORKING_CAPITAL_GENERAL"], is_for_new_unit: false, key_benefit_keywords: ["TERM_LOAN", "ENHANCE_PRODUCTION"], loan_type: "WORKING_CAPITAL", max_tenure_yrs: 3 },
-  { scheme_name: "Secured Business Loan (SBL)", min_amount_cr: 0.01, max_amount_cr: 10.0, target_demographics: ["ALL"], target_sectors: ["ALL"], target_purpose: ["GENERAL_BUSINESS_NEEDS", "PROJECT_EXPANSION"], is_for_new_unit: false, key_benefit_keywords: ["SECURED_AGAINST_ASSETS", "LONG_TENURE"], loan_type: "OTHER", max_tenure_yrs: 10 },
+  { scheme_name: "EXPRESS Loan", min_amount_cr: 0.01, max_amount_cr: 1.0, target_demographics: ["ALL"], target_sectors: ["MANUFACTURING", "SERVICE", "ALL"], target_purpose: ["CAPEX_MACHINERY_ACQUISITION"], is_for_new_unit: false, key_benefit_keywords: ["FAST_APPROVAL", "100%_FINANCING_W_FD"], loan_type: "TERM_CAPEX", loan_subtype: "MACHINERY", max_tenure_yrs: 5 },
+  { scheme_name: "SPEED Loan", min_amount_cr: 0.01, max_amount_cr: 15.0, target_demographics: ["ALL"], target_sectors: ["MANUFACTURING", "SERVICE", "ALL"], target_purpose: ["CAPEX_MACHINERY_ACQUISITION"], is_for_new_unit: false, key_benefit_keywords: ["HIGH_LIMIT", "MINIMAL_COLLATERAL", "LONG_TENURE"], loan_type: "TERM_CAPEX", loan_subtype: "MACHINERY", max_tenure_yrs: 7 },
+  { scheme_name: "ATOM", min_amount_cr: 0.01, max_amount_cr: 1.0, target_demographics: ["ALL"], target_sectors: ["MANUFACTURING", "SERVICE", "ALL"], target_purpose: ["CAPEX_MACHINERY_ACQUISITION"], is_for_new_unit: false, key_benefit_keywords: ["TReDS_FOCUS", "IMMEDIATE_OFFER", "100%_FINANCING"], loan_type: "TERM_CAPEX", loan_subtype: "MACHINERY", max_tenure_yrs: 5 },
+  { scheme_name: "ARISE", min_amount_cr: 0.01, max_amount_cr: 50.0, target_demographics: ["ALL"], target_sectors: ["MANUFACTURING", "SERVICE", "ALL"], target_purpose: ["CAPEX_MACHINERY_ACQUISITION", "CAPEX_FACTORY_CONSTRUCTION", "PROJECT_EXPANSION", "CAPEX_SOLAR"], is_for_new_unit: false, key_benefit_keywords: ["HIGH_LIMIT", "SUSTAINABLE", "COVERS_LAND"], loan_type: "PROJECT_EXPANSION", loan_subtype: "PROJECT_LOAN", max_tenure_yrs: 7 },
+  { scheme_name: "STHAPAN", min_amount_cr: 0.01, max_amount_cr: 50.0, target_demographics: ["ALL"], target_sectors: ["MANUFACTURING", "SERVICE", "ALL"], target_purpose: ["CAPEX_MACHINERY_ACQUISITION", "CAPEX_FACTORY_CONSTRUCTION", "PROJECT_SETUP", "CAPEX_SOLAR"], is_for_new_unit: true, key_benefit_keywords: ["HIGH_LIMIT", "GREENFIELD_FOCUS", "COVERS_LAND"], loan_type: "PROJECT_EXPANSION", loan_subtype: "GREENFIELD_PROJECT", max_tenure_yrs: 7 },
+  { scheme_name: "UBHARTE SITAARE", min_amount_cr: 0.01, max_amount_cr: 30.0, target_demographics: ["ALL"], target_sectors: ["ALL"], target_purpose: ["PROJECT_MODERNIZATION", "EXPORT_POTENTIAL"], is_for_new_unit: false, key_benefit_keywords: ["PERFORMANCE_INCENTIVES", "GLOBAL_GROWTH", "TECHNOLOGY_UPGRADE"], loan_type: "PROJECT_EXPANSION", loan_subtype: "EXPORT_PROJECT", max_tenure_yrs: 7 },
+  { scheme_name: "ARJANA", min_amount_cr: 0.01, max_amount_cr: 3.0, target_demographics: ["WOMAN_PROMOTER"], target_sectors: ["MANUFACTURING", "SERVICE", "ALL"], target_purpose: ["CAPEX_MACHINERY_ACQUISITION", "PROJECT_EXPANSION"], is_for_new_unit: null, key_benefit_keywords: ["100%_MACHINERY_FINANCING", "SOFT_TERMS", "CGTME_FEE_INCENTIVE"], loan_type: "INCLUSION_TERM", loan_subtype: "WOMAN_PROMOTER", max_tenure_yrs: 7 },
+  { scheme_name: "SAATH", min_amount_cr: 0.01, max_amount_cr: 3.0, target_demographics: ["SC_ST_PROMOTER"], target_sectors: ["MANUFACTURING", "SERVICE", "ALL"], target_purpose: ["CAPEX_MACHINERY_ACQUISITION", "PROJECT_EXPANSION"], is_for_new_unit: null, key_benefit_keywords: ["100%_MACHINERY_FINANCING", "SOFT_TERMS", "CGTME_FEE_INCENTIVE"], loan_type: "INCLUSION_TERM", loan_subtype: "SC_ST_PROMOTER", max_tenure_yrs: 7 },
+  { scheme_name: "MORE", min_amount_cr: 0.01, max_amount_cr: 5.0, target_demographics: ["ALL"], target_sectors: ["SERVICE", "TOURISM_HOSPITALITY"], target_purpose: ["PROJECT_MODERNIZATION", "INTERIOR_RENOVATION"], is_for_new_unit: false, key_benefit_keywords: ["SWIFT_SANCTIONS", "FLEXIBLE_REPAYMENT"], loan_type: "THEMATIC_PROGRAM", loan_subtype: "TOURISM_HOSPITALITY", max_tenure_yrs: 8 },
+  { scheme_name: "CASH DEFENCE", min_amount_cr: 0.01, max_amount_cr: 20.0, target_demographics: ["ALL"], target_sectors: ["DEFENCE_SECTOR"], target_purpose: ["PURCHASE_ORDER_FINANCING"], is_for_new_unit: null, key_benefit_keywords: ["100%_PO_FINANCING", "STANDBY_CREDIT", "CUSTOMIZED_REPAYMENT"], loan_type: "THEMATIC_PROGRAM", loan_subtype: "DEFENCE_SECTOR", max_tenure_yrs: 5 },
+  { scheme_name: "CASH RXIL", min_amount_cr: 0.01, max_amount_cr: 25.0, target_demographics: ["ALL"], target_sectors: ["ALL"], target_purpose: ["PURCHASE_ORDER_FINANCING"], is_for_new_unit: false, key_benefit_keywords: ["RXIL_TReDS_FOCUS", "HIGH_LIMIT", "FAST_DISBURSAL"], loan_type: "THEMATIC_PROGRAM", loan_subtype: "TReDS_FINANCE", max_tenure_yrs: 0.5 },
+  { scheme_name: "EDGE", min_amount_cr: 0.01, max_amount_cr: 3.0, target_demographics: ["ALL"], target_sectors: ["ALL"], target_purpose: ["CAPEX_DG_SET"], is_for_new_unit: false, key_benefit_keywords: ["CLEANER_ENERGY", "LOWER_PROMOTER_CONTRIBUTION"], loan_type: "GREEN_TRANSITION", loan_subtype: "CLEAN_ENERGY_CAPEX", max_tenure_yrs: 5 },
+  { scheme_name: "AGRI-AI", min_amount_cr: 0.01, max_amount_cr: 50.0, target_demographics: ["ALL"], target_sectors: ["AGRO_PROCESSING"], target_purpose: ["PROJECT_EXPANSION", "WORKING_CAPITAL_GENERAL", "COLD_STORAGE", "LOGISTICS"], is_for_new_unit: null, key_benefit_keywords: ["COMPOSITE_OPTION", "FPO_ELIGIBILITY", "80%_PROJECT_FINANCE"], loan_type: "THEMATIC_PROGRAM", loan_subtype: "AGRI_VALUE_CHAIN", max_tenure_yrs: 7 },
+  { scheme_name: "Green Finance Scheme (GFS)", min_amount_cr: 0.01, max_amount_cr: 50.0, target_demographics: ["ALL"], target_sectors: ["GREEN_VALUE_CHAIN"], target_purpose: ["PROJECT_SETUP", "PROJECT_EXPANSION", "GREEN_VALUE_CHAIN"], is_for_new_unit: null, key_benefit_keywords: ["SUSTAINABLE_FOCUS", "HIGH_LIMIT"], loan_type: "GREEN_TRANSITION", loan_subtype: "GREEN_VALUE_CHAIN", max_tenure_yrs: 10 },
+  { scheme_name: "4E Scheme", min_amount_cr: 0.01, max_amount_cr: 10.0, target_demographics: ["ALL"], target_sectors: ["GREEN_VALUE_CHAIN", "ALL"], target_purpose: ["ENERGY_EFFICIENCY", "CAPEX_MACHINERY_ACQUISITION"], is_for_new_unit: false, key_benefit_keywords: ["100%_FINANCING", "ENERGY_EFFICIENCY"], loan_type: "GREEN_TRANSITION", loan_subtype: "ENERGY_EFFICIENCY", max_tenure_yrs: 5 },
+  { scheme_name: "Electric Vehicle Scheme", min_amount_cr: 0.01, max_amount_cr: 20.0, target_demographics: ["ALL"], target_sectors: ["GREEN_VALUE_CHAIN", "SERVICE", "TRANSPORT"], target_purpose: ["CAPEX_EV_INFRA", "VEHICLE_FINANCING"], is_for_new_unit: null, key_benefit_keywords: ["ECO_FRIENDLY", "INFRASTRUCTURE_FUNDING"], loan_type: "GREEN_TRANSITION", loan_subtype: "EV_MOBILITY", max_tenure_yrs: 5 },
+  { scheme_name: "SWIFT", min_amount_cr: 0.01, max_amount_cr: 3.0, target_demographics: ["ALL"], target_sectors: ["ALL"], target_purpose: ["WORKING_CAPITAL_GENERAL"], is_for_new_unit: false, key_benefit_keywords: ["OVERDRAFT", "QUICK_DISBURSAL"], loan_type: "WORKING_CAPITAL", loan_subtype: "OVERDRAFT", max_tenure_yrs: 3 },
+  { scheme_name: "STEP", min_amount_cr: 0.01, max_amount_cr: 3.0, target_demographics: ["ALL"], target_sectors: ["ALL"], target_purpose: ["WORKING_CAPITAL_GENERAL"], is_for_new_unit: false, key_benefit_keywords: ["TERM_LOAN", "ENHANCE_PRODUCTION"], loan_type: "WORKING_CAPITAL", loan_subtype: "TERM_LOAN_SUPPORT", max_tenure_yrs: 3 },
+  { scheme_name: "Secured Business Loan (SBL)", min_amount_cr: 0.01, max_amount_cr: 10.0, target_demographics: ["ALL"], target_sectors: ["ALL"], target_purpose: ["GENERAL_BUSINESS_NEEDS", "PROJECT_EXPANSION"], is_for_new_unit: false, key_benefit_keywords: ["SECURED_AGAINST_ASSETS", "LONG_TENURE"], loan_type: "BUSINESS_BANKING", loan_subtype: "SECURED_LOAN", max_tenure_yrs: 10 },
   // GOVT SCHEMES
-  { scheme_name: "ESDP (Skill Development)", loan_type: "TRAINING_GRANT", target_demographics: ["SC_ST_PROMOTER", "WOMAN_PROMOTER", "DIFFERENTLY_ABLED", "BPL_PERSONS"], target_sectors: ["ALL"], target_purpose: ["SKILL_DEVELOPMENT", "ENTREPRENEURSHIP_PROMOTION"], is_for_new_unit: null, key_benefit_keywords: ["FREE_TRAINING", "STIPEND"], is_grant_scheme: true },
-  { scheme_name: "MSME Cluster Development", loan_type: "GRANT_INFRASTRUCTURE", max_amount_cr: 20.0, target_demographics: ["SPV_OR_GOVT"], target_sectors: ["MANUFACTURING", "SERVICE"], target_purpose: ["INFRASTRUCTURE_DEVELOPMENT", "COMMON_FACILITY_CENTRE"], is_for_new_unit: null, key_benefit_keywords: ["GOVT_GRANT", "CAPITAL_SUBSIDY_UP_TO_70%"], is_grant_scheme: true },
-  { scheme_name: "Procurement & Marketing Support", loan_type: "SUBSIDY_MARKETING", target_demographics: ["ALL"], target_sectors: ["ALL"], target_purpose: ["MARKETING_ASSISTANCE", "EXHIBITION_PARTICIPATION"], is_for_new_unit: null, key_benefit_keywords: ["SUBSIDY", "TRADE_FAIR_SUPPORT"], is_grant_scheme: true },
-  { scheme_name: "CGTMSE", loan_type: "GUARANTEE_COVER", min_amount_cr: 0.01, max_amount_cr: 5.0, target_demographics: ["ALL"], target_sectors: ["ALL"], target_purpose: ["LOAN_GUARANTEE", "CAPITAL_LOAN", "WORKING_CAPITAL_LOAN"], is_for_new_unit: null, key_benefit_keywords: ["COLLATERAL_FREE_LOAN", "GUARANTEE_COVERAGE"], is_grant_scheme: true },
-  { scheme_name: "CLCSS (Tech Upgradation)", loan_type: "SUBSIDY_CAPEX", min_amount_cr: 0.01, max_amount_cr: 1.0, target_demographics: ["ALL"], target_sectors: ["MANUFACTURING", "SERVICE"], target_purpose: ["TECHNOLOGY_UPGRADATION", "CAPEX_MACHINERY_ACQUISITION"], is_for_new_unit: null, key_benefit_keywords: ["CAPITAL_SUBSIDY", "MODERNIZATION"], is_grant_scheme: true },
-  { scheme_name: "PMEGP", loan_type: "SUBSIDY_CUM_LOAN", max_amount_cr: 0.5, target_demographics: ["ALL"], target_sectors: ["MANUFACTURING", "SERVICE"], target_purpose: ["PROJECT_SETUP", "EMPLOYMENT_GENERATION"], is_for_new_unit: true, key_benefit_keywords: ["SUBSIDY_UP_TO_35%", "LOAN_ASSISTANCE"], is_grant_scheme: true },
-  { scheme_name: "MUDRA Yojana", loan_type: "LOAN", min_amount_cr: 0.01, max_amount_cr: 0.1, target_demographics: ["ALL"], target_sectors: ["ALL"], target_purpose: ["PROJECT_SETUP", "WORKING_CAPITAL_GENERAL"], is_for_new_unit: null, key_benefit_keywords: ["MICRO_FINANCE", "SHISHU_KISHOR_TARUN"], is_grant_scheme: false },
-  { scheme_name: "Stand Up India", loan_type: "LOAN", min_amount_cr: 0.1, max_amount_cr: 10.0, target_demographics: ["SC_ST_PROMOTER", "WOMAN_PROMOTER"], target_sectors: ["ALL"], target_purpose: ["PROJECT_SETUP", "GREENFIELD_PROJECTS"], is_for_new_unit: true, key_benefit_keywords: ["SC_ST_WOMEN_FOCUS", "GREENFIELD_PROJECTS"], is_grant_scheme: false, max_tenure_yrs: 7 },
-  { scheme_name: "ZED Certification", loan_type: "SUBSIDY_QUALITY", target_demographics: ["ALL"], target_sectors: ["MANUFACTURING"], target_purpose: ["QUALITY_CERTIFICATION", "ENVIRONMENTAL_COMPLIANCE"], is_for_new_unit: null, key_benefit_keywords: ["ZED_CERTIFICATION", "SUBSIDY_ON_CONSULTANCY"], is_grant_scheme: true },
-  { scheme_name: "ASPIRE (Rural Innovation)", loan_type: "SUBSIDY_INCUBATION", target_demographics: ["ALL"], target_sectors: ["RURAL_INDUSTRY", "INNOVATION_STARTUPS"], target_purpose: ["INCUBATION", "LIVELIHOOD_MISSION"], is_for_new_unit: true, key_benefit_keywords: ["RURAL_FOCUS", "FUNDING_FOR_INCUBATORS"], is_grant_scheme: true }
+  { scheme_name: "ESDP (Skill Development)", loan_type: "GRANT_TRAINING", loan_subtype: "TRAINING_GRANT", target_demographics: ["SC_ST_PROMOTER", "WOMAN_PROMOTER", "DIFFERENTLY_ABLED", "BPL_PERSONS"], target_sectors: ["ALL"], target_purpose: ["SKILL_DEVELOPMENT", "ENTREPRENEURSHIP_PROMOTION"], is_for_new_unit: null, key_benefit_keywords: ["FREE_TRAINING", "STIPEND"], is_grant_scheme: true },
+  { scheme_name: "MSME Cluster Development", loan_type: "GRANT_CLUSTER_INFRA", loan_subtype: "CLUSTER_INFRA", max_amount_cr: 20.0, target_demographics: ["SPV_OR_GOVT"], target_sectors: ["MANUFACTURING", "SERVICE"], target_purpose: ["INFRASTRUCTURE_DEVELOPMENT", "COMMON_FACILITY_CENTRE"], is_for_new_unit: null, key_benefit_keywords: ["GOVT_GRANT", "CAPITAL_SUBSIDY_UP_TO_70%"], is_grant_scheme: true },
+  { scheme_name: "Procurement & Marketing Support", loan_type: "GRANT_MARKETING", loan_subtype: "MARKETING_SUPPORT", target_demographics: ["ALL"], target_sectors: ["ALL"], target_purpose: ["MARKETING_ASSISTANCE", "EXHIBITION_PARTICIPATION"], is_for_new_unit: null, key_benefit_keywords: ["SUBSIDY", "TRADE_FAIR_SUPPORT"], is_grant_scheme: true },
+  { scheme_name: "CGTMSE", loan_type: "CREDIT_GUARANTEE", loan_subtype: "GUARANTEE_COVER", min_amount_cr: 0.01, max_amount_cr: 5.0, target_demographics: ["ALL"], target_sectors: ["ALL"], target_purpose: ["LOAN_GUARANTEE", "CAPITAL_LOAN", "WORKING_CAPITAL_LOAN"], is_for_new_unit: null, key_benefit_keywords: ["COLLATERAL_FREE_LOAN", "GUARANTEE_COVERAGE"], is_grant_scheme: true },
+  { scheme_name: "CLCSS (Tech Upgradation)", loan_type: "GRANT_TECH_CAPEX", loan_subtype: "TECH_UPGRADATION", min_amount_cr: 0.01, max_amount_cr: 1.0, target_demographics: ["ALL"], target_sectors: ["MANUFACTURING", "SERVICE"], target_purpose: ["TECHNOLOGY_UPGRADATION", "CAPEX_MACHINERY_ACQUISITION"], is_for_new_unit: null, key_benefit_keywords: ["CAPITAL_SUBSIDY", "MODERNIZATION"], is_grant_scheme: true },
+  { scheme_name: "PMEGP", loan_type: "SUBSIDY_LINKED_LOAN", loan_subtype: "SUBSIDY_CUM_LOAN", max_amount_cr: 0.5, target_demographics: ["ALL"], target_sectors: ["MANUFACTURING", "SERVICE"], target_purpose: ["PROJECT_SETUP", "EMPLOYMENT_GENERATION"], is_for_new_unit: true, key_benefit_keywords: ["SUBSIDY_UP_TO_35%", "LOAN_ASSISTANCE"], is_grant_scheme: true },
+  { scheme_name: "MUDRA Yojana", loan_type: "MICRO_ENTERPRISE", loan_subtype: "MUDRA", min_amount_cr: 0.01, max_amount_cr: 0.1, target_demographics: ["ALL"], target_sectors: ["ALL"], target_purpose: ["PROJECT_SETUP", "WORKING_CAPITAL_GENERAL"], is_for_new_unit: null, key_benefit_keywords: ["MICRO_FINANCE", "SHISHU_KISHOR_TARUN"], is_grant_scheme: false },
+  { scheme_name: "Stand Up India", loan_type: "INCLUSION_TERM", loan_subtype: "STAND_UP", min_amount_cr: 0.1, max_amount_cr: 10.0, target_demographics: ["SC_ST_PROMOTER", "WOMAN_PROMOTER"], target_sectors: ["ALL"], target_purpose: ["PROJECT_SETUP", "GREENFIELD_PROJECTS"], is_for_new_unit: true, key_benefit_keywords: ["SC_ST_WOMEN_FOCUS", "GREENFIELD_PROJECTS"], is_grant_scheme: false, max_tenure_yrs: 7 },
+  { scheme_name: "ZED Certification", loan_type: "GRANT_QUALITY", loan_subtype: "QUALITY_CERTIFICATION", target_demographics: ["ALL"], target_sectors: ["MANUFACTURING"], target_purpose: ["QUALITY_CERTIFICATION", "ENVIRONMENTAL_COMPLIANCE"], is_for_new_unit: null, key_benefit_keywords: ["ZED_CERTIFICATION", "SUBSIDY_ON_CONSULTANCY"], is_grant_scheme: true },
+  { scheme_name: "ASPIRE (Rural Innovation)", loan_type: "GRANT_INCUBATION", loan_subtype: "INCUBATION_SUPPORT", target_demographics: ["ALL"], target_sectors: ["RURAL_INDUSTRY", "INNOVATION_STARTUPS"], target_purpose: ["INCUBATION", "LIVELIHOOD_MISSION"], is_for_new_unit: true, key_benefit_keywords: ["RURAL_FOCUS", "FUNDING_FOR_INCUBATORS"], is_grant_scheme: true }
 ];
+
+const LOAN_TYPE_TAXONOMY = {
+  TERM_CAPEX: { label: 'Term Loan • Capex / Machinery', category: 'LOAN' },
+  PROJECT_EXPANSION: { label: 'Project / Expansion Loan', category: 'LOAN' },
+  INCLUSION_TERM: { label: 'Inclusion & Priority Term Loan', category: 'LOAN' },
+  THEMATIC_PROGRAM: { label: 'Thematic / Sector Program', category: 'LOAN' },
+  GREEN_TRANSITION: { label: 'Green & Sustainability Finance', category: 'LOAN' },
+  WORKING_CAPITAL: { label: 'Working Capital & OD', category: 'LOAN' },
+  BUSINESS_BANKING: { label: 'Secured Business Loan', category: 'LOAN' },
+  MICRO_ENTERPRISE: { label: 'Micro / MUDRA Loan', category: 'LOAN' },
+  CREDIT_GUARANTEE: { label: 'Credit Guarantee Cover', category: 'GUARANTEE' },
+  GRANT_TRAINING: { label: 'Skill & Training Grant', category: 'GRANT' },
+  GRANT_CLUSTER_INFRA: { label: 'Cluster / Infrastructure Grant', category: 'GRANT' },
+  GRANT_MARKETING: { label: 'Marketing & Market Access Grant', category: 'GRANT' },
+  GRANT_TECH_CAPEX: { label: 'Capital Subsidy / Tech Upgrade', category: 'GRANT' },
+  SUBSIDY_LINKED_LOAN: { label: 'Subsidy Linked Loan', category: 'HYBRID' },
+  GRANT_QUALITY: { label: 'Quality & Certification Support', category: 'GRANT' },
+  GRANT_INCUBATION: { label: 'Incubation & Innovation Support', category: 'GRANT' }
+};
+
+const humanizeKey = (value = '') =>
+  value
+    .toLowerCase()
+    .split('_')
+    .map((chunk) => chunk.charAt(0).toUpperCase() + chunk.slice(1))
+    .join(' ');
+
+const getLoanTypeLabel = (loanType) =>
+  LOAN_TYPE_TAXONOMY[loanType]?.label ?? humanizeKey(loanType);
+
+const getLoanBadgeText = (scheme) => {
+  const baseLabel = getLoanTypeLabel(scheme.loan_type);
+  if (scheme.loan_subtype) {
+    return `${baseLabel} • ${humanizeKey(scheme.loan_subtype)}`;
+  }
+  return baseLabel;
+};
 
 const GENERAL_SECTORS = ['ALL', 'MANUFACTURING', 'SERVICE'];
 
@@ -352,7 +389,7 @@ const FeaturedSchemes = ({ schemes, onSelect }) => (
           <div key={scheme.scheme_name} className="rounded-3xl border border-slate-200 bg-white p-6 flex flex-col shadow-sm">
             <div className="flex items-center justify-between mb-4">
               <span className={`px-3 py-1 rounded-full text-xs font-bold tracking-wider ${scheme.is_grant_scheme ? 'bg-emerald-50 text-emerald-700' : 'bg-blue-50 text-blue-700'}`}>
-                {scheme.loan_type.replace(/_/g, ' ')}
+                {getLoanBadgeText(scheme)}
               </span>
               <span className="text-xs font-semibold text-slate-400">Confidence {confidenceScore}%</span>
             </div>
@@ -814,7 +851,7 @@ const SchemeDetails = ({ scheme, onBack }) => {
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-3">
               <span className={`px-3 py-1 rounded-full text-xs font-bold tracking-wider ${scheme.is_grant_scheme ? 'bg-emerald-500 text-white' : 'bg-blue-500 text-white'}`}>
-                {scheme.loan_type.replace(/_/g, ' ')}
+                {getLoanBadgeText(scheme)}
               </span>
               {scheme.is_for_new_unit && (
                 <span className="bg-purple-500 text-white px-3 py-1 rounded-full text-xs font-bold tracking-wider">
@@ -932,9 +969,10 @@ const SchemeDetails = ({ scheme, onBack }) => {
 
 const ResultsGrid = ({ results, onReset, onViewDetails }) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const normalizedSearch = searchTerm.toLowerCase();
   const filteredResults = results.filter((scheme) =>
-    scheme.scheme_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    scheme.loan_type.toLowerCase().includes(searchTerm.toLowerCase())
+    scheme.scheme_name.toLowerCase().includes(normalizedSearch) ||
+    getLoanBadgeText(scheme).toLowerCase().includes(normalizedSearch)
   );
 
   const emptyState = filteredResults.length === 0;
@@ -979,7 +1017,7 @@ const ResultsGrid = ({ results, onReset, onViewDetails }) => {
               <div className="p-5 flex-grow">
                 <div className="flex justify-between items-start mb-4">
                   <span className={`px-3 py-1 rounded-full text-xs font-bold tracking-wider ${scheme.is_grant_scheme ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'}`}>
-                    {scheme.loan_type.replace(/_/g, ' ')}
+                    {getLoanBadgeText(scheme)}
                   </span>
                   {scheme.target_demographics.some(d => d !== "ALL") && (
                     <span className="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs font-bold">
@@ -1048,7 +1086,9 @@ const App = () => {
   ), []);
 
   const featuredSchemes = useMemo(() => {
-    const curated = SCHEMES_DATA.filter(scheme => (scheme.max_amount_cr || 0) >= 3 || scheme.loan_type.includes('GREEN'));
+    const curated = SCHEMES_DATA.filter(
+      (scheme) => (scheme.max_amount_cr || 0) >= 3 || scheme.loan_type === 'GREEN_TRANSITION'
+    );
     return (curated.length ? curated : SCHEMES_DATA).slice(0, 3);
   }, []);
 
@@ -1057,8 +1097,12 @@ const App = () => {
     const isGreenfield = userReq.is_greenfield_unit === 'true';
     const wantLoans = userReq.scheme_type_preference === 'LOAN' || userReq.scheme_type_preference === 'ALL';
     const wantGrants = userReq.scheme_type_preference === 'GRANT' || userReq.scheme_type_preference === 'ALL';
+    const userPurposes = userReq.loan_purpose_keywords || [];
+    const hasUserPurposes = userPurposes.length > 0;
 
     return SCHEMES_DATA.filter(scheme => {
+      const typeMeta = LOAN_TYPE_TAXONOMY[scheme.loan_type] || {};
+      const isHybridProduct = typeMeta.category === 'HYBRID';
       // 1. Amount Check
       if (scheme.min_amount_cr && amount < scheme.min_amount_cr) return false;
       if (scheme.max_amount_cr && amount > scheme.max_amount_cr) return false;
@@ -1067,7 +1111,10 @@ const App = () => {
       if (scheme.is_for_new_unit !== null && scheme.is_for_new_unit !== isGreenfield) return false;
 
       // 3. Loan vs Grant Preference
-      if (scheme.is_grant_scheme && !wantGrants) return false;
+      if (scheme.is_grant_scheme && !wantGrants) {
+        const hybridAllowed = isHybridProduct && wantLoans;
+        if (!hybridAllowed) return false;
+      }
       if (!scheme.is_grant_scheme && !wantLoans) return false;
 
       // 4. Sector & Specialized Sector Check
@@ -1102,9 +1149,11 @@ const App = () => {
       if (!demoMatch) return false;
 
       // 8. Purpose Check (Soft match)
-      const purposeMatch = scheme.target_purpose.some(p => userReq.loan_purpose_keywords.includes(p)) ||
-                           scheme.target_purpose.includes("WORKING_CAPITAL_GENERAL") ||
-                           scheme.target_purpose.includes("GENERAL_BUSINESS_NEEDS"); 
+  const schemePurposes = scheme.target_purpose || [];
+  const purposeMatch = !hasUserPurposes ||
+           schemePurposes.some(p => userPurposes.includes(p)) ||
+           schemePurposes.includes("WORKING_CAPITAL_GENERAL") ||
+           schemePurposes.includes("GENERAL_BUSINESS_NEEDS"); 
       
       if (!purposeMatch) return false;
 
